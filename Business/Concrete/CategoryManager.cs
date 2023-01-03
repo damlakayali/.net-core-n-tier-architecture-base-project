@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class ProductManager : ICategoryService
+    public class CategoryManager : ICategoryService
     {
         public List<Category> GetAll()
         {
