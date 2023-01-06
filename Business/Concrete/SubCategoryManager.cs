@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -16,26 +18,35 @@ namespace Business.Concrete
 
         public SubCategoryManager(ISubCategoryDal subCategoryDal)
         {
-            _subCategoryDal = subCategoryDal;   
-        }
-        public List<SubCategory> GetAll()
-        {
-            throw new NotImplementedException();
+            _subCategoryDal = subCategoryDal;
         }
 
-        public List<Category> GetAllByCategory(int id)
+        public IResult Add(SubCategory subCategory)
         {
-            throw new NotImplementedException();
+            _subCategoryDal.Add(subCategory);
+
+            return new SuccessResult(Messages.CategoryAdded);
         }
 
-        public List<SubCategoryDetailDto> GetAllDetail()
+        public IDataResult<List<SubCategory>> GetAll()
         {
-           return _subCategoryDal.GetSubCategoryDetails();
+            return new SuccessDataResult<List<SubCategory>>(_subCategoryDal.GetAll(), "All sub categories.");
         }
 
-        List<SubCategory> ISubCategoryService.GetAllByCategory(int id)
+        public IDataResult<List<SubCategoryDetailDto>> GetAllDetail()
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<SubCategoryDetailDto>>(_subCategoryDal.GetSubCategoryDetails(), "All sub categories.");
         }
+
+        public IDataResult<SubCategory> GetById(int id)
+        {
+            return new SuccessDataResult<SubCategory>(_subCategoryDal.Get(i => id == id), "sub category.");
+        }
+
+        public IDataResult<List<SubCategory>> GetAllByCategory(int id)
+        {
+            return new SuccessDataResult<List<SubCategory>>(_subCategoryDal.GetAll(i=>i.categoryId==id), "All sub categories.");
+        }
+
     }
 }
