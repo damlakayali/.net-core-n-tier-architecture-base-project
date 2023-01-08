@@ -23,7 +23,7 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  id = sc.id,
                                  name = sc.name,
-                                 category = c.name,
+                                 category = c.nameTr,
                                  categoryId = c.id,
                                  createdById = sc.createdById,
                                  createdTime = sc.createdTime,

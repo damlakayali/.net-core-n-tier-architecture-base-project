@@ -10,7 +10,8 @@ namespace Entities.Concrete
     public class Category:IEntity
     {
         public int id { get; set; }
-        public string name { get; set; }
+        public string nameTr { get; set; }
+        public string nameEng { get; set; }
         public int createdById { get; set; }
         public DateTime createdTime { get; set; }
         public int lastUpdatedById { get; set; }
