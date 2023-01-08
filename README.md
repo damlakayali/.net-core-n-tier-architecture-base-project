@@ -7,5 +7,7 @@ Projelerimde kullanmak üzere oluşturduğum  .Net Core 6 frameworkü ile hazır
 
 - ASP.Net Core 6
 - Entity Framework
+- IoC - Autofac
+- Validation - Fluent Validation
 
-### Güncelleme Tarihi : 06.01.2023
+### Güncelleme Tarihi : 09.01.2023
