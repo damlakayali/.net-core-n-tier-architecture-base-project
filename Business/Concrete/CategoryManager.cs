@@ -3,6 +3,7 @@ using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -27,10 +28,16 @@ namespace Business.Concrete
         [ValidationAspect(typeof(CategoryValidator))]
         public IResult Add(Category category)
         {
+            IResult result = BusinessRules.Run(CheckCategoryNameExist(category.nameTr, category.nameEng));
 
+            if (result!=null)
+            {
+                return new ErrorResult(result.Message);
+            }
             _categoryDal.Add(category);
 
             return new SuccessResult(Messages.CategoryAdded);
+         
         }
 
         public IDataResult<List<Category>> GetAll()
@@ -46,6 +53,17 @@ namespace Business.Concrete
         public IDataResult<Category> GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        private IResult CheckCategoryNameExist(string nameTr,string nameEng)
+        {
+            var result = _categoryDal.GetAll(c => c.nameTr == nameTr || c.nameEng == nameEng).Any();
+            if(result)
+            {
+                return new ErrorResult("Category name already exist.");
+            }
+
+            return new SuccessResult();
         }
     }
 }
