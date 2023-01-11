@@ -13,9 +13,11 @@ Projelerimde kullanmak üzere oluşturduğum  .Net Core 6 frameworkü ile hazır
 ### Proje içeriği
 
 - Business katmanındaki işlemler için bir Validation yapısı kuruldu, bu yapıyıda AOP mantığı ile oluşturdum. Kütüphane olarak da Fluent Validation kullandım.
+Validation kodlarını business kodlarının içerisine yazmadan metot çağırıldığında kontrol etmesini sağlayan bir yapı oluşturdum. 
+
 ![image](https://user-images.githubusercontent.com/19391683/211897757-a34d3be6-ea44-4752-a560-039fb02ac4ea.png)
 
-Validation kodlarını business kodlarının içerisine yazmadan metot çağırıldığında kontrol etmesini sağlayan bir yapı oluşturdum. 
+
 
 - Business rules kodları içinde Core katmanında bir tool oluşturduk. Burada da ilgili manager dosyasında oluşturduğumuz business kurallarımızı toola gönderip gerekli kuralları sağlayıp sağlamadığını kontrol ediyoruz.
 
