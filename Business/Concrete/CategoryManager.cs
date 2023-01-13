@@ -2,6 +2,7 @@
 using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -28,6 +29,7 @@ namespace Business.Concrete
 
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(CategoryValidator))]
+        [CacheRemoveAspect("ICategoryService.Get")]
         public IResult Add(Category category)
         {
             IResult result = BusinessRules.Run(CheckCategoryNameExist(category.nameTr, category.nameEng));
@@ -42,6 +44,7 @@ namespace Business.Concrete
          
         }
 
+        [CacheAspect]
         public IDataResult<List<Category>> GetAll()
         {
             return new SuccessDataResult<List<Category>>(_categoryDal.GetAll(), "All categories.");
