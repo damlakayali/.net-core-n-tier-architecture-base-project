@@ -3,8 +3,10 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Logging.Log4Net.Loggers;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
 using Core.Utilities.Results;
@@ -28,6 +30,8 @@ namespace Business.Concrete
             _categoryDal = categoryDal;
         }
 
+
+        [LogAspect(typeof(DatabaseLogger))]
         [SecuredOperation("admin")]
         [ValidationAspect(typeof(CategoryValidator))]
         [CacheRemoveAspect("ICategoryService.Get")]
