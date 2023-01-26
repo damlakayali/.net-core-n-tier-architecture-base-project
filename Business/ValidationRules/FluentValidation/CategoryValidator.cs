@@ -12,9 +12,9 @@ namespace Business.ValidationRules.FluentValidation
     {
         public CategoryValidator()
         {
-            RuleFor(p => p.nameTr).MinimumLength(100);
+            RuleFor(p => p.nameTr).MaximumLength(100);
             RuleFor(p => p.nameTr).NotEmpty();
-            RuleFor(p => p.nameEng).MinimumLength(100);
+            RuleFor(p => p.nameEng).MaximumLength(100);
             RuleFor(p => p.nameEng).NotEmpty();
             //RuleFor(p => p.nameTr).Must(StartWithA).WithMessage("Ürünler A harfi ile başlamalı"); --> custom rule
         }

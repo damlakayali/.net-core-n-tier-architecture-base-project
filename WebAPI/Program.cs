@@ -23,7 +23,6 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder =>
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton<ICategoryService,CategoryManager>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

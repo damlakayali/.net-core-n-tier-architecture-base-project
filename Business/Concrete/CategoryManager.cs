@@ -3,6 +3,7 @@ using Business.BusinessAspects.Autofac;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Exception;
 using Core.Aspects.Autofac.Logging;
 using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
@@ -31,10 +32,11 @@ namespace Business.Concrete
         }
 
 
-        [LogAspect(typeof(DatabaseLogger))]
-        [SecuredOperation("admin")]
-        [ValidationAspect(typeof(CategoryValidator))]
+        [LogAspect(typeof(FileLogger))]
+        [ExceptionLogAspect(typeof(FileLogger))]
+       // [ValidationAspect(typeof(CategoryValidator))]
         [CacheRemoveAspect("ICategoryService.Get")]
+        [SecuredOperation("admin")]
         public IResult Add(Category category)
         {
             IResult result = BusinessRules.Run(CheckCategoryNameExist(category.nameTr, category.nameEng));
